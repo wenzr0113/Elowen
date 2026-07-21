@@ -8,317 +8,480 @@
 <style>
 
 
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<meta name="referrer" content="no-referrer">
-<title>梦角传讯</title>
-<style>
-
-  /* ========== 主题变量 - iMessage 原生苹果风格 ========== */
+  /* ========== 主题变量 - 梦幻星空版 ========== */
   :root {
     --global-font-size: 16px;
-    --bg-primary: #ffffff;
-    --chat-page-bg: #ffffff;
+    /* 背景渐变 - 更有层次感的梦幻紫 */
+    --bg-gradient-1: #f5f3ff;
+    --bg-gradient-2: #ede9fe;
+    --bg-gradient-3: #ddd6fe;
+    --bg-gradient-4: #c4b5fd;
     
-    /* iMessage 经典文字与系统颜色 */
-    --text-primary: #000000;
-    --text-secondary: #8e8e93;
-    --text-tertiary: #aeaeb2;
-    --text-muted: #c7c7cc;
+    /* 文字颜色 */
+    --text-primary: #4c1d95;
+    --text-secondary: #7c3aed;
+    --text-tertiary: #a78bfa;
+    --text-muted: #c4b5fd;
     
-    /* 玻璃拟态与边框 */
-    --card-bg: rgba(242, 242, 247, 0.8);
-    --card-bg-solid: #f2f2f7;
-    --card-border: rgba(0, 0, 0, 0.05);
-    --card-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-    --card-shadow-hover: 0 4px 14px rgba(0, 0, 0, 0.06);
+    /* 卡片 - 增强玻璃拟态 */
+    --card-bg: rgba(255, 255, 255, 0.7);
+    --card-bg-solid: rgba(255, 255, 255, 0.85);
+    --card-border: rgba(255, 255, 255, 0.8);
+    --card-shadow: 0 8px 32px rgba(124, 58, 237, 0.1);
+    --card-shadow-hover: 0 12px 40px rgba(124, 58, 237, 0.15);
     
-    /* 顶部/底部导航栏 */
-    --topbar-bg-1: rgba(249, 249, 249, 0.94);
-    --topbar-bg-2: rgba(249, 249, 249, 0.78);
-    --tabbar-bg: rgba(249, 249, 249, 0.94);
-    --tabbar-border: #e5e5ea;
+    /* 顶部/底部栏 */
+    --topbar-bg-1: rgba(255, 255, 255, 0.9);
+    --topbar-bg-2: rgba(255, 255, 255, 0.7);
+    --tabbar-bg: rgba(255, 255, 255, 0.85);
+    --tabbar-border: rgba(167, 139, 250, 0.2);
     
     /* 按钮 */
-    --icon-btn-bg: #e5e5ea;
-    --icon-btn-border: transparent;
+    --icon-btn-bg: rgba(255, 255, 255, 0.7);
+    --icon-btn-border: rgba(255, 255, 255, 0.9);
+    
+    /* 聊天页面 */
+    --chat-page-bg: #f5f3ff;
     
     /* 输入框 */
-    --input-bg: #ffffff;
-    --input-border: #c7c7cc;
+    --input-bg: rgba(255, 255, 255, 0.9);
+    --input-border: #e9d5ff;
     
-    /* iMessage 气泡配色 (发送蓝/接收灰) */
-    --bubble-mine-bg-1: #007aff;
-    --bubble-mine-bg-2: #007aff;
-    --bubble-mine-text: #ffffff;
-    --bubble-their-bg: #e9e9eb;
-    --bubble-their-text: #000000;
+    /* 气泡 */
+    --bubble-mine-bg-1: #a78bfa;
+    --bubble-mine-bg-2: #8b5cf6;
+    --bubble-mine-text: white;
+    --bubble-their-bg: rgba(255, 255, 255, 0.9);
+    --bubble-their-text: #4c1d95;
     
-    /* 弹窗及高亮 */
-    --modal-bg: rgba(255, 255, 255, 0.96);
-    --modal-overlay: rgba(0, 0, 0, 0.3);
-    --accent-pink: #ff2d55;
-    --accent-blue: #007aff;
-    --accent-gold: #ffcc00;
-    --accent-green: #34c759;
-    --highlight-bg: #e5e5ea;
-    --highlight-text: #007aff;
+
+    
+    /* 弹窗 */
+    --bg-primary: #ffffff;
+    --modal-bg: rgba(255, 255, 255, 0.95);
+    --modal-overlay: rgba(91, 33, 182, 0.25);
+    
+    /* 强调色 */
+    --accent-pink: #f472b6;
+    --accent-blue: #60a5fa;
+    --accent-gold: #fbbf24;
+    --accent-green: #34d399;
+    
+    /* 高光 */
+    --highlight-bg: #fef3c7;
+    --highlight-text: #92400e;
   }
 
-  /* 深色模式 - iMessage 暗黑风格 */
   body.dark-mode {
-    --bg-primary: #000000;
-    --chat-page-bg: #000000;
+    --bg-gradient-1: #0f0a1a;
+    --bg-gradient-2: #1a102e;
+    --bg-gradient-3: #2d1b4e;
+    --bg-gradient-4: #3d2066;
     
-    --text-primary: #ffffff;
-    --text-secondary: #8e8e93;
-    --text-tertiary: #636366;
-    --text-muted: #48484a;
+    --text-primary: #e0d7f5;
+    --text-secondary: #c4b5fd;
+    --text-tertiary: #a78bfa;
+    --text-muted: #6b5b95;
     
-    --card-bg: rgba(28, 28, 30, 0.8);
-    --card-bg-solid: #1c1c1e;
-    --card-border: rgba(255, 255, 255, 0.1);
+    --card-bg: rgba(45, 27, 78, 0.6);
+    --card-bg-solid: rgba(30, 16, 46, 0.8);
+    --card-border: rgba(167, 139, 250, 0.15);
+    --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --card-shadow-hover: 0 12px 40px rgba(124, 58, 237, 0.2);
     
-    --topbar-bg-1: rgba(28, 28, 30, 0.94);
-    --topbar-bg-2: rgba(28, 28, 30, 0.78);
-    --tabbar-bg: rgba(28, 28, 30, 0.94);
-    --tabbar-border: #38383a;
+    --topbar-bg-1: rgba(15, 10, 26, 0.95);
+    --topbar-bg-2: rgba(15, 10, 26, 0.8);
+    --tabbar-bg: rgba(15, 10, 26, 0.9);
+    --tabbar-border: rgba(167, 139, 250, 0.1);
     
-    --icon-btn-bg: #2c2c2e;
-    --input-bg: #1c1c1e;
-    --input-border: #38383a;
+    --icon-btn-bg: rgba(45, 27, 78, 0.6);
+    --icon-btn-border: rgba(167, 139, 250, 0.2);
     
-    --bubble-mine-bg-1: #0a84ff;
-    --bubble-mine-bg-2: #0a84ff;
-    --bubble-mine-text: #ffffff;
-    --bubble-their-bg: #262628;
-    --bubble-their-text: #ffffff;
+    --chat-page-bg: #0f0a1a;
+    --input-bg: rgba(45, 27, 78, 0.8);
+    --input-border: #4c3d6e;
     
-    --modal-bg: rgba(28, 28, 30, 0.96);
-    --modal-overlay: rgba(0, 0, 0, 0.6);
+    --bubble-mine-bg-1: #7c3aed;
+    --bubble-mine-bg-2: #6d28d9;
+    --bubble-mine-text: #f5f3ff;
+    --bubble-their-bg: rgba(45, 27, 78, 0.8);
+    --bubble-their-text: #e0d7f5;
+    
+    --bg-primary: #1a102e;
+    --modal-bg: rgba(15, 10, 26, 0.98);
+    --modal-overlay: rgba(0, 0, 0, 0.7);
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  /* ========== 主题系统 ========== */
   
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background: var(--chat-page-bg);
-    min-height: 100vh;
-    color: var(--text-primary);
-    overflow-x: hidden;
-    font-size: 14px;
-    position: relative;
+  /* 深海夜 - 浅色 */
+  body.theme-deep-sea {
+    --bg-gradient-1: #eff6ff;
+    --bg-gradient-2: #dbeafe;
+    --bg-gradient-3: #bfdbfe;
+    --bg-gradient-4: #93c5fd;
+    --text-primary: #1e3a5f;
+    --text-secondary: #2563eb;
+    --text-tertiary: #60a5fa;
+    --text-muted: #93c5fd;
+    --card-bg: rgba(255, 255, 255, 0.72);
+    --card-bg-solid: rgba(255, 255, 255, 0.88);
+    --card-border: rgba(255, 255, 255, 0.85);
+    --card-shadow: 0 8px 32px rgba(37, 99, 235, 0.08);
+    --card-shadow-hover: 0 12px 40px rgba(37, 99, 235, 0.13);
+    --topbar-bg-1: rgba(255, 255, 255, 0.92);
+    --topbar-bg-2: rgba(255, 255, 255, 0.72);
+    --tabbar-bg: rgba(255, 255, 255, 0.88);
+    --tabbar-border: rgba(96, 165, 250, 0.2);
+    --icon-btn-bg: rgba(255, 255, 255, 0.72);
+    --icon-btn-border: rgba(255, 255, 255, 0.92);
+    --chat-page-bg: #eff6ff;
+    --input-bg: rgba(255, 255, 255, 0.92);
+    --input-border: #bfdbfe;
+    --bubble-mine-bg-1: #60a5fa;
+    --bubble-mine-bg-2: #3b82f6;
+    --bubble-mine-text: white;
+    --bubble-their-bg: rgba(255, 255, 255, 0.92);
+    --bubble-their-text: #1e3a5f;
+    --bg-primary: #ffffff;
+    --modal-bg: rgba(255, 255, 255, 0.96);
+    --modal-overlay: rgba(30, 64, 175, 0.22);
+    --accent-pink: #f472b6;
+    --accent-blue: #60a5fa;
+    --accent-gold: #fbbf24;
+    --accent-green: #34d399;
+    --highlight-bg: #dbeafe;
+    --highlight-text: #1e40af;
+  }
+  /* 深海夜 - 暗色 */
+  body.theme-deep-sea.dark-mode {
+    --bg-gradient-1: #0a1628;
+    --bg-gradient-2: #0f2040;
+    --bg-gradient-3: #162d5a;
+    --bg-gradient-4: #1e3a6e;
+    --text-primary: #dbeafe;
+    --text-secondary: #93c5fd;
+    --text-tertiary: #60a5fa;
+    --text-muted: #3b5998;
+    --card-bg: rgba(22, 45, 90, 0.55);
+    --card-bg-solid: rgba(15, 32, 64, 0.82);
+    --card-border: rgba(96, 165, 250, 0.12);
+    --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --card-shadow-hover: 0 12px 40px rgba(59, 130, 246, 0.18);
+    --topbar-bg-1: rgba(10, 22, 40, 0.96);
+    --topbar-bg-2: rgba(10, 22, 40, 0.82);
+    --tabbar-bg: rgba(10, 22, 40, 0.92);
+    --tabbar-border: rgba(96, 165, 250, 0.1);
+    --icon-btn-bg: rgba(22, 45, 90, 0.6);
+    --icon-btn-border: rgba(96, 165, 250, 0.18);
+    --chat-page-bg: #0a1628;
+    --input-bg: rgba(22, 45, 90, 0.75);
+    --input-border: #1e3a6e;
+    --bubble-mine-bg-1: #2563eb;
+    --bubble-mine-bg-2: #1d4ed8;
+    --bubble-mine-text: #eff6ff;
+    --bubble-their-bg: rgba(22, 45, 90, 0.75);
+    --bubble-their-text: #dbeafe;
+    --bg-primary: #0f2040;
+    --modal-bg: rgba(10, 22, 40, 0.98);
+    --modal-overlay: rgba(0, 0, 0, 0.7);
   }
 
-  #app {
-    max-width: 480px;
-    margin: 0 auto;
-    min-height: 100vh;
-    position: relative;
-    padding-bottom: 70px;
-    z-index: 1;
+  /* 玫瑰 - 浅色 */
+  body.theme-rose {
+    --bg-gradient-1: #fff1f2;
+    --bg-gradient-2: #ffe4e6;
+    --bg-gradient-3: #fecdd3;
+    --bg-gradient-4: #fda4af;
+    --text-primary: #881337;
+    --text-secondary: #e11d48;
+    --text-tertiary: #fb7185;
+    --text-muted: #fda4af;
+    --card-bg: rgba(255, 255, 255, 0.72);
+    --card-bg-solid: rgba(255, 255, 255, 0.88);
+    --card-border: rgba(255, 255, 255, 0.85);
+    --card-shadow: 0 8px 32px rgba(225, 29, 72, 0.08);
+    --card-shadow-hover: 0 12px 40px rgba(225, 29, 72, 0.13);
+    --topbar-bg-1: rgba(255, 255, 255, 0.92);
+    --topbar-bg-2: rgba(255, 255, 255, 0.72);
+    --tabbar-bg: rgba(255, 255, 255, 0.88);
+    --tabbar-border: rgba(251, 113, 133, 0.2);
+    --icon-btn-bg: rgba(255, 255, 255, 0.72);
+    --icon-btn-border: rgba(255, 255, 255, 0.92);
+    --chat-page-bg: #fff1f2;
+    --input-bg: rgba(255, 255, 255, 0.92);
+    --input-border: #fecdd3;
+    --bubble-mine-bg-1: #fb7185;
+    --bubble-mine-bg-2: #f43f5e;
+    --bubble-mine-text: white;
+    --bubble-their-bg: rgba(255, 255, 255, 0.92);
+    --bubble-their-text: #881337;
+    --bg-primary: #ffffff;
+    --modal-bg: rgba(255, 255, 255, 0.96);
+    --modal-overlay: rgba(190, 18, 60, 0.2);
+    --accent-pink: #fb7185;
+    --accent-blue: #60a5fa;
+    --accent-gold: #fbbf24;
+    --accent-green: #34d399;
+    --highlight-bg: #ffe4e6;
+    --highlight-text: #9f1239;
+  }
+  /* 玫瑰 - 暗色 */
+  body.theme-rose.dark-mode {
+    --bg-gradient-1: #1a0a10;
+    --bg-gradient-2: #2d1018;
+    --bg-gradient-3: #4a1525;
+    --bg-gradient-4: #6b1a32;
+    --text-primary: #fecdd3;
+    --text-secondary: #fda4af;
+    --text-tertiary: #fb7185;
+    --text-muted: #8b3a50;
+    --card-bg: rgba(74, 21, 37, 0.55);
+    --card-bg-solid: rgba(45, 16, 24, 0.82);
+    --card-border: rgba(251, 113, 133, 0.12);
+    --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --card-shadow-hover: 0 12px 40px rgba(244, 63, 94, 0.18);
+    --topbar-bg-1: rgba(26, 10, 16, 0.96);
+    --topbar-bg-2: rgba(26, 10, 16, 0.82);
+    --tabbar-bg: rgba(26, 10, 16, 0.92);
+    --tabbar-border: rgba(251, 113, 133, 0.1);
+    --icon-btn-bg: rgba(74, 21, 37, 0.6);
+    --icon-btn-border: rgba(251, 113, 133, 0.18);
+    --chat-page-bg: #1a0a10;
+    --input-bg: rgba(74, 21, 37, 0.75);
+    --input-border: #4a1525;
+    --bubble-mine-bg-1: #e11d48;
+    --bubble-mine-bg-2: #be123c;
+    --bubble-mine-text: #fff1f2;
+    --bubble-their-bg: rgba(74, 21, 37, 0.75);
+    --bubble-their-text: #fecdd3;
+    --bg-primary: #2d1018;
+    --modal-bg: rgba(26, 10, 16, 0.98);
+    --modal-overlay: rgba(0, 0, 0, 0.7);
   }
 
-  /* ========== iMessage 风格顶部栏 ========== */
-  .chat-header {
-    display: flex;
-    align-items: center;
-    padding: 0 12px;
-    padding-top: calc(8px + env(safe-area-inset-top));
-    height: calc(50px + env(safe-area-inset-top));
-    background: var(--topbar-bg-1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 0.5px solid var(--tabbar-border);
-    position: sticky;
-    top: 0;
-    z-index: 100;
+  /* 落日 - 浅色 */
+  body.theme-sunset {
+    --bg-gradient-1: #fffbeb;
+    --bg-gradient-2: #fef3c7;
+    --bg-gradient-3: #fde68a;
+    --bg-gradient-4: #fbbf24;
+    --text-primary: #78350f;
+    --text-secondary: #d97706;
+    --text-tertiary: #f59e0b;
+    --text-muted: #fbbf24;
+    --card-bg: rgba(255, 255, 255, 0.72);
+    --card-bg-solid: rgba(255, 255, 255, 0.88);
+    --card-border: rgba(255, 255, 255, 0.85);
+    --card-shadow: 0 8px 32px rgba(217, 119, 6, 0.08);
+    --card-shadow-hover: 0 12px 40px rgba(217, 119, 6, 0.13);
+    --topbar-bg-1: rgba(255, 255, 255, 0.92);
+    --topbar-bg-2: rgba(255, 255, 255, 0.72);
+    --tabbar-bg: rgba(255, 255, 255, 0.88);
+    --tabbar-border: rgba(245, 158, 11, 0.2);
+    --icon-btn-bg: rgba(255, 255, 255, 0.72);
+    --icon-btn-border: rgba(255, 255, 255, 0.92);
+    --chat-page-bg: #fffbeb;
+    --input-bg: rgba(255, 255, 255, 0.92);
+    --input-border: #fde68a;
+    --bubble-mine-bg-1: #fbbf24;
+    --bubble-mine-bg-2: #f59e0b;
+    --bubble-mine-text: #78350f;
+    --bubble-their-bg: rgba(255, 255, 255, 0.92);
+    --bubble-their-text: #78350f;
+    --bg-primary: #ffffff;
+    --modal-bg: rgba(255, 255, 255, 0.96);
+    --modal-overlay: rgba(180, 83, 9, 0.2);
+    --accent-pink: #fb7185;
+    --accent-blue: #38bdf8;
+    --accent-gold: #fbbf24;
+    --accent-green: #34d399;
+    --highlight-bg: #fef3c7;
+    --highlight-text: #92400e;
   }
-  .chat-header-back {
-    font-size: 22px;
-    color: var(--accent-blue);
-    cursor: pointer;
-    padding: 4px 8px;
-    flex-shrink: 0;
-    line-height: 1;
-    font-weight: 400;
-  }
-  .chat-header-back::after {
-    content: "返回";
-    font-size: 16px;
-    margin-left: 2px;
-    vertical-align: middle;
-  }
-  .chat-header-title-wrap {
-    flex: 1;
-    text-align: center;
-    min-width: 0;
-  }
-  .chat-header-name {
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--text-primary);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .chat-header-more {
-    font-size: 18px;
-    color: var(--accent-blue);
-    cursor: pointer;
-    padding: 4px 8px;
-    flex-shrink: 0;
-  }
-
-  /* ========== iMessage 消息列表与气泡样式 ========== */
-  .chat-messages {
-    flex: 1;
-    overflow-y: auto;
-    padding: 16px 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    position: relative;
-    z-index: 1;
-    background-color: transparent;
-  }
-
-  .msg-row {
-    display: flex;
-    align-items: flex-end;
-    gap: 8px;
-    max-width: 100%;
-    margin-bottom: 2px;
-  }
-  .msg-row.mine {
-    flex-direction: row-reverse;
+  /* 落日 - 暗色 */
+  body.theme-sunset.dark-mode {
+    --bg-gradient-1: #1a0f05;
+    --bg-gradient-2: #2d1a08;
+    --bg-gradient-3: #4a2c0e;
+    --bg-gradient-4: #6b3a12;
+    --text-primary: #fef3c7;
+    --text-secondary: #fde68a;
+    --text-tertiary: #fbbf24;
+    --text-muted: #8b6914;
+    --card-bg: rgba(74, 44, 14, 0.55);
+    --card-bg-solid: rgba(45, 26, 8, 0.82);
+    --card-border: rgba(251, 191, 36, 0.12);
+    --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --card-shadow-hover: 0 12px 40px rgba(245, 158, 11, 0.18);
+    --topbar-bg-1: rgba(26, 15, 5, 0.96);
+    --topbar-bg-2: rgba(26, 15, 5, 0.82);
+    --tabbar-bg: rgba(26, 15, 5, 0.92);
+    --tabbar-border: rgba(251, 191, 36, 0.1);
+    --icon-btn-bg: rgba(74, 44, 14, 0.6);
+    --icon-btn-border: rgba(251, 191, 36, 0.18);
+    --chat-page-bg: #1a0f05;
+    --input-bg: rgba(74, 44, 14, 0.75);
+    --input-border: #4a2c0e;
+    --bubble-mine-bg-1: #d97706;
+    --bubble-mine-bg-2: #b45309;
+    --bubble-mine-text: #fffbeb;
+    --bubble-their-bg: rgba(74, 44, 14, 0.75);
+    --bubble-their-text: #fef3c7;
+    --bg-primary: #2d1a08;
+    --modal-bg: rgba(26, 15, 5, 0.98);
+    --modal-overlay: rgba(0, 0, 0, 0.7);
   }
 
-  .msg-avatar-small {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    flex-shrink: 0;
-    overflow: hidden;
-    margin-bottom: 2px;
+  /* 暗夜剧场 - 浅色（这个主题浅色偏灰白+酒红点缀） */
+  body.theme-theater {
+    --bg-gradient-1: #faf5f5;
+    --bg-gradient-2: #f5eded;
+    --bg-gradient-3: #e8d5d5;
+    --bg-gradient-4: #d4a0a0;
+    --text-primary: #3b1a1a;
+    --text-secondary: #8b2252;
+    --text-tertiary: #c24a6a;
+    --text-muted: #d4a0a0;
+    --card-bg: rgba(255, 255, 255, 0.72);
+    --card-bg-solid: rgba(255, 255, 255, 0.88);
+    --card-border: rgba(255, 255, 255, 0.85);
+    --card-shadow: 0 8px 32px rgba(139, 34, 82, 0.08);
+    --card-shadow-hover: 0 12px 40px rgba(139, 34, 82, 0.13);
+    --topbar-bg-1: rgba(255, 255, 255, 0.92);
+    --topbar-bg-2: rgba(255, 255, 255, 0.72);
+    --tabbar-bg: rgba(255, 255, 255, 0.88);
+    --tabbar-border: rgba(139, 34, 82, 0.15);
+    --icon-btn-bg: rgba(255, 255, 255, 0.72);
+    --icon-btn-border: rgba(255, 255, 255, 0.92);
+    --chat-page-bg: #faf5f5;
+    --input-bg: rgba(255, 255, 255, 0.92);
+    --input-border: #e8d5d5;
+    --bubble-mine-bg-1: #8b2252;
+    --bubble-mine-bg-2: #722040;
+    --bubble-mine-text: #fff5f5;
+    --bubble-their-bg: rgba(255, 255, 255, 0.92);
+    --bubble-their-text: #3b1a1a;
+    --bg-primary: #ffffff;
+    --modal-bg: rgba(255, 255, 255, 0.96);
+    --modal-overlay: rgba(59, 26, 26, 0.22);
+    --accent-pink: #c24a6a;
+    --accent-blue: #60a5fa;
+    --accent-gold: #d4a030;
+    --accent-green: #34d399;
+    --highlight-bg: #f5eded;
+    --highlight-text: #722040;
   }
-  .msg-avatar-small img { width: 100%; height: 100%; object-fit: cover; }
-
-  .msg-content-wrap {
-    max-width: 72%;
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* iMessage 极简经典气泡 */
-  .msg-bubble {
-    padding: 10px 16px;
-    border-radius: 18px;
-    font-size: 16px;
-    line-height: 1.35;
-    position: relative;
-    white-space: normal;
-    word-wrap: break-word;
-    word-break: break-word;
-    letter-spacing: -0.2px;
-  }
-
-  /* 对方发送的消息气泡 */
-  .msg-row.their .msg-bubble {
-    background: var(--bubble-their-bg);
-    color: var(--bubble-their-text);
-    border-bottom-left-radius: 4px; /* iMessage 气泡尾巴造型 */
-  }
-
-  /* 我发送的消息气泡 (经典蓝/iOS Blue) */
-  .msg-row.mine .msg-bubble {
-    background: var(--bubble-mine-bg-1);
-    color: var(--bubble-mine-text);
-    border-bottom-right-radius: 4px; /* iMessage 气泡尾巴造型 */
-  }
-
-  /* 居中时间戳 */
-  .msg-time {
-    text-align: center;
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--text-tertiary);
-    padding: 16px 0 8px 0;
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
-  }
-
-  /* ========== iMessage 底部输入区域 ========== */
-  .chat-input-area {
-    padding: 8px 12px;
-    padding-bottom: calc(8px + env(safe-area-inset-bottom));
-    background: var(--topbar-bg-1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-top: 0.5px solid var(--tabbar-border);
-    position: relative;
-    z-index: 10;
-  }
-
-  .input-row {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  }
-
-  .chat-input {
-    flex: 1;
-    padding: 8px 14px;
-    border-radius: 20px;
-    border: 0.5px solid var(--input-border);
-    background: var(--input-bg);
-    font-size: 16px;
-    color: var(--text-primary);
-    outline: none;
-    resize: none;
-    max-height: 120px;
-    min-height: 36px;
-    line-height: 1.3;
-    font-family: inherit;
-  }
-  .chat-input:focus {
-    border-color: var(--accent-blue);
+  /* 暗夜剧场 - 暗色（核心：黑+酒红+金） */
+  body.theme-theater.dark-mode {
+    --bg-gradient-1: #0a0a0a;
+    --bg-gradient-2: #151010;
+    --bg-gradient-3: #1f1418;
+    --bg-gradient-4: #2d1a20;
+    --text-primary: #f5e6e8;
+    --text-secondary: #d4a0a0;
+    --text-tertiary: #c24a6a;
+    --text-muted: #5a3040;
+    --card-bg: rgba(45, 26, 32, 0.6);
+    --card-bg-solid: rgba(20, 12, 15, 0.85);
+    --card-border: rgba(139, 34, 82, 0.18);
+    --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --card-shadow-hover: 0 12px 40px rgba(139, 34, 82, 0.2);
+    --topbar-bg-1: rgba(10, 10, 10, 0.96);
+    --topbar-bg-2: rgba(10, 10, 10, 0.82);
+    --tabbar-bg: rgba(10, 10, 10, 0.92);
+    --tabbar-border: rgba(139, 34, 82, 0.12);
+    --icon-btn-bg: rgba(45, 26, 32, 0.6);
+    --icon-btn-border: rgba(139, 34, 82, 0.2);
+    --chat-page-bg: #0a0a0a;
+    --input-bg: rgba(45, 26, 32, 0.75);
+    --input-border: #2d1a20;
+    --bubble-mine-bg-1: #8b2252;
+    --bubble-mine-bg-2: #722040;
+    --bubble-mine-text: #f5e6e8;
+    --bubble-their-bg: rgba(45, 26, 32, 0.75);
+    --bubble-their-text: #f5e6e8;
+    --bg-primary: #151010;
+    --modal-bg: rgba(10, 10, 10, 0.98);
+    --modal-overlay: rgba(0, 0, 0, 0.75);
+    --accent-pink: #c24a6a;
+    --accent-blue: #60a5fa;
+    --accent-gold: #d4a030;
+    --accent-green: #34d399;
   }
 
-  .input-icon-btn, .send-btn {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    border: none;
-    background: var(--accent-blue);
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    transition: transform 0.15s ease, opacity 0.15s ease;
+  /* 薄荷 - 浅色 */
+  body.theme-mint {
+    --bg-gradient-1: #f0fdfa;
+    --bg-gradient-2: #ccfbf1;
+    --bg-gradient-3: #99f6e4;
+    --bg-gradient-4: #5eead4;
+    --text-primary: #134e4a;
+    --text-secondary: #0d9488;
+    --text-tertiary: #2dd4bf;
+    --text-muted: #99f6e4;
+    --card-bg: rgba(255, 255, 255, 0.72);
+    --card-bg-solid: rgba(255, 255, 255, 0.88);
+    --card-border: rgba(255, 255, 255, 0.85);
+    --card-shadow: 0 8px 32px rgba(13, 148, 136, 0.08);
+    --card-shadow-hover: 0 12px 40px rgba(13, 148, 136, 0.13);
+    --topbar-bg-1: rgba(255, 255, 255, 0.92);
+    --topbar-bg-2: rgba(255, 255, 255, 0.72);
+    --tabbar-bg: rgba(255, 255, 255, 0.88);
+    --tabbar-border: rgba(45, 212, 191, 0.2);
+    --icon-btn-bg: rgba(255, 255, 255, 0.72);
+    --icon-btn-border: rgba(255, 255, 255, 0.92);
+    --chat-page-bg: #f0fdfa;
+    --input-bg: rgba(255, 255, 255, 0.92);
+    --input-border: #ccfbf1;
+    --bubble-mine-bg-1: #2dd4bf;
+    --bubble-mine-bg-2: #14b8a6;
+    --bubble-mine-text: #042f2e;
+    --bubble-their-bg: rgba(255, 255, 255, 0.92);
+    --bubble-their-text: #134e4a;
+    --bg-primary: #ffffff;
+    --modal-bg: rgba(255, 255, 255, 0.96);
+    --modal-overlay: rgba(15, 118, 110, 0.2);
+    --accent-pink: #fb7185;
+    --accent-blue: #22d3ee;
+    --accent-gold: #fbbf24;
+    --accent-green: #34d399;
+    --highlight-bg: #ccfbf1;
+    --highlight-text: #115e59;
   }
-  .input-icon-btn {
-    background: var(--icon-btn-bg);
-    color: var(--text-secondary);
+  /* 薄荷 - 暗色 */
+  body.theme-mint.dark-mode {
+    --bg-gradient-1: #042f2e;
+    --bg-gradient-2: #064e4a;
+    --bg-gradient-3: #0a6b64;
+    --bg-gradient-4: #0d8b80;
+    --text-primary: #ccfbf1;
+    --text-secondary: #99f6e4;
+    --text-tertiary: #5eead4;
+    --text-muted: #1a6b64;
+    --card-bg: rgba(10, 107, 100, 0.5);
+    --card-bg-solid: rgba(6, 78, 74, 0.8);
+    --card-border: rgba(45, 212, 191, 0.12);
+    --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --card-shadow-hover: 0 12px 40px rgba(20, 184, 166, 0.18);
+    --topbar-bg-1: rgba(4, 47, 46, 0.96);
+    --topbar-bg-2: rgba(4, 47, 46, 0.82);
+    --tabbar-bg: rgba(4, 47, 46, 0.92);
+    --tabbar-border: rgba(45, 212, 191, 0.1);
+    --icon-btn-bg: rgba(10, 107, 100, 0.6);
+    --icon-btn-border: rgba(45, 212, 191, 0.18);
+    --chat-page-bg: #042f2e;
+    --input-bg: rgba(10, 107, 100, 0.75);
+    --input-border: #0a6b64;
+    --bubble-mine-bg-1: #0d9488;
+    --bubble-mine-bg-2: #0f766e;
+    --bubble-mine-text: #f0fdfa;
+    --bubble-their-bg: rgba(10, 107, 100, 0.75);
+    --bubble-their-text: #ccfbf1;
+    --bg-primary: #064e4a;
+    --modal-bg: rgba(4, 47, 46, 0.98);
+    --modal-overlay: rgba(0, 0, 0, 0.7);
   }
-  .input-icon-btn:active, .send-btn:active {
-    transform: scale(0.92);
-    opacity: 0.8;
-  }
-
-  /* 隐藏特定多余的富媒体气泡样式 */
-  .msg-row.mine .msg-bubble--media, .msg-row.their .msg-bubble--media {
-    background: transparent !important;
-    padding: 0 !important;
-  }
-
 
   /* 主题选择器样式 */
   .theme-picker-grid {
